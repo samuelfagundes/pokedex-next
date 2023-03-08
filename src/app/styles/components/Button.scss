@@ -1,0 +1,37 @@
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  background-color: var(--red);
+  color: var(--white);
+  border: none; 
+}
+
+.previous {
+  border-radius: 5px 0 0 5px;
+  border: 1px solid var(--red);
+  border-right: 1px solid var(--black);
+  transition: all 0.2s
+}
+
+.previous:hover {
+  background-color: var(--gray);
+  color: var(--text);
+  border: 1px solid var(--black);
+}
+
+.next {
+  border-radius: 0 5px 5px 0;
+  border: 1px solid var(--red);
+  border-left: 1px solid var(--black);
+  transition: all 0.2s
+}
+
+.next:hover {
+  background-color: var(--gray);
+  color: var(--text);
+  border: 1px solid var(--black);
+}
