@@ -1,13 +1,14 @@
 'use client'
 
-import { formatId } from '@/utils/formatId'
 import { NamedAPIResourceList, PokemonClient } from 'pokenode-ts'
 import { useEffect, useState } from 'react'
+
+import { formatId } from '@/utils/formatId'
 import { PokemonCard } from './PokemonCard'
+import { Button } from './Button'
 
 import '../styles/dashboard.scss'
-import axios from 'axios'
-import { Button } from './Button'
+import Link from 'next/link'
 
 export function Dashboard() {
   const [pokemons, setPokemons] = useState<NamedAPIResourceList>()
@@ -25,30 +26,6 @@ export function Dashboard() {
     getPokemons()
   }, [])
 
-  async function handleNextPage() {
-    window.scrollTo(0, 0)
-    const nextPage = pokemons?.next
-
-    if (nextPage) {
-      axios
-        .get(nextPage)
-        .then((response) => setPokemons(response.data))
-        .catch((error) => console.log(error))
-    }
-  }
-
-  async function handlePreviousPage() {
-    window.scrollTo(0, 0)
-    const prevPage = pokemons?.previous
-
-    if (prevPage) {
-      axios
-        .get(prevPage)
-        .then((response) => setPokemons(response.data))
-        .catch((error) => console.log(error))
-    }
-  }
-
   return (
     <main>
       <div className="dashboardContainer">
@@ -63,17 +40,10 @@ export function Dashboard() {
         })}
       </div>
       <div className="buttonsContainer">
-        {pokemons?.previous ? (
-          <Button
-            onClick={handlePreviousPage}
-            className="previous"
-            text="Previous page"
-          />
-        ) : (
-          <></>
-        )}
         {pokemons?.next ? (
-          <Button onClick={handleNextPage} className="next" text="Next page" />
+          <Link href={'/2'}>
+            <Button className="next" text="Next page" />
+          </Link>
         ) : (
           <></>
         )}

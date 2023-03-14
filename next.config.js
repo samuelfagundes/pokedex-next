@@ -13,15 +13,6 @@ const nextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/page/:pageNumber',
-        permanent: true,
-      },
-    ]
-  },
 }
 
 module.exports = nextConfig

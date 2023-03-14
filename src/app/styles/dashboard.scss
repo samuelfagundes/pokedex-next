@@ -13,5 +13,13 @@ main {
 
 .buttonsContainer {
   display: flex;
-  width: 100%
+  margin: 0 auto;
+  justify-content: flex-end;
+  width: 1050px;
+
+  a {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
 }

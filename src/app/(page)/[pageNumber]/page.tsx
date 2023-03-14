@@ -1,56 +1,43 @@
 'use client'
 
-import { formatId } from '@/utils/formatId'
 import { NamedAPIResourceList, PokemonClient } from 'pokenode-ts'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Inconsolata } from 'next/font/google'
 
-import '../../styles/dashboard.scss'
-import axios from 'axios'
+import { formatId } from '@/utils/formatId'
 import { PokemonCard } from '@/app/components/PokemonCard'
 import { Button } from '@/app/components/Button'
 
+import '../../styles/dashboard.scss'
+import Link from 'next/link'
 const inconsolata = Inconsolata({ subsets: ['latin'] })
 
 export default function Dashboard() {
   const [pokemons, setPokemons] = useState<NamedAPIResourceList>()
+  const pathName: string = usePathname().split('/')[1]
+  let limit = 60
+
+  const listLimit = useCallback(() => {
+    if (Number(pathName) === 17) {
+      return (limit = 48)
+    } else {
+      return limit
+    }
+  }, [])
 
   useEffect(() => {
     async function getPokemons() {
       const api = new PokemonClient()
 
       await api
-        .listPokemons(0, 60)
+        .listPokemons((Number(pathName) - 1) * 60, listLimit())
         .then((data) => setPokemons(data))
         .catch((error) => console.log(error))
     }
 
     getPokemons()
-  }, [])
-
-  async function handleNextPage() {
-    window.scrollTo(0, 0)
-    const nextPage = pokemons?.next
-
-    if (nextPage) {
-      axios
-        .get(nextPage)
-        .then((response) => setPokemons(response.data))
-        .catch((error) => console.log(error))
-    }
-  }
-
-  async function handlePreviousPage() {
-    window.scrollTo(0, 0)
-    const prevPage = pokemons?.previous
-
-    if (prevPage) {
-      axios
-        .get(prevPage)
-        .then((response) => setPokemons(response.data))
-        .catch((error) => console.log(error))
-    }
-  }
+  }, [pathName, listLimit])
 
   return (
     <main className={inconsolata.className}>
@@ -67,16 +54,17 @@ export default function Dashboard() {
       </div>
       <div className="buttonsContainer">
         {pokemons?.previous ? (
-          <Button
-            onClick={handlePreviousPage}
-            className="previous"
-            text="Previous page"
-          />
+          <Link href={`/${Number(pathName) - 1}`}>
+            <Button className="previous" text="Previous page" />
+          </Link>
         ) : (
           <></>
         )}
-        {pokemons?.next ? (
-          <Button onClick={handleNextPage} className="next" text="Next page" />
+
+        {pokemons?.next && Number(pathName) !== 17 ? (
+          <Link href={`/${Number(pathName) + 1}`}>
+            <Button className="next" text="Next page" />
+          </Link>
         ) : (
           <></>
         )}
