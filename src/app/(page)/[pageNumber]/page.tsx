@@ -20,6 +20,7 @@ export default function Dashboard() {
 
   const listLimit = useCallback(() => {
     if (Number(pathName) === 17) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       return (limit = 48)
     } else {
       return limit
