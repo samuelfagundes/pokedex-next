@@ -2,7 +2,7 @@
 
 import { NamedAPIResourceList, PokemonClient } from 'pokenode-ts'
 import { useCallback, useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { redirect, usePathname } from 'next/navigation'
 import { Inconsolata } from 'next/font/google'
 
 import { formatId } from '@/utils/formatId'
@@ -37,7 +37,11 @@ export default function Dashboard() {
         .catch((error) => console.log(error))
     }
 
-    getPokemons()
+    if (Number(pathName) <= 17) {
+      getPokemons()
+    } else {
+      redirect('/')
+    }
   }, [pathName, listLimit])
 
   return (
