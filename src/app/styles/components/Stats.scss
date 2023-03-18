@@ -1,0 +1,31 @@
+.statsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.stats {
+  background-color: var(--gray);
+  padding: 1rem;
+  border-radius: 5px
+}
+
+.emptyBar {
+  position: relative;
+  margin: 0.2rem 0 0.5rem;
+  background-color: white;
+  width: 1050px;
+  height: 15px;
+  border-radius: 5000px;
+  overflow: hidden;
+}
+
+.fullBar {
+  background-color: var(--red);
+  height: 15px;
+  position: relative;
+}

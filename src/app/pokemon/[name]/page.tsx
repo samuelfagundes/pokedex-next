@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react'
 import { Inconsolata } from 'next/font/google'
 
 import '../../styles/pokemonPage.scss'
-import { pokemonTypesColors } from '@/utils/pokemonTypesColors'
-import { readableColor } from 'polished'
-import { Question, X } from 'phosphor-react'
+import { Stats } from '@/app/components/Stats'
+import { PokemonInfo } from '@/app/components/PokemonInfo'
+import { Types } from '@/app/components/Types'
 
 const inconsolata = Inconsolata({ subsets: ['latin'] })
 
@@ -17,7 +17,6 @@ export default function PokemonPage() {
   const [pokemonInfo, setPokemonInfo] = useState<Pokemon>()
   const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies>()
   const [abilityInfo, setAbilityInfo] = useState<Ability>()
-  const [isInfoOpen, setIsInfoOpen] = useState(false)
 
   const splitPath = usePathname().split('/')
   const pokemonName = splitPath[splitPath.length - 1]
@@ -47,12 +46,10 @@ export default function PokemonPage() {
       }
     }
 
+    console.log('Hello')
+
     getPokemons()
   }, [pokemonName, abilityId])
-
-  function handleAbilityInfo() {
-    setIsInfoOpen((prevState) => !prevState)
-  }
 
   function formatId(pokemonId: string | undefined) {
     if (pokemonId?.length === 1) {
@@ -62,34 +59,6 @@ export default function PokemonPage() {
     } else {
       return '#' + pokemonId
     }
-  }
-
-  function convertHeight() {
-    return (Number(pokemonInfo?.height) / 10).toFixed(1)
-  }
-
-  function convertWeight() {
-    return (Number(pokemonInfo?.weight) / 10).toFixed(1)
-  }
-
-  function getGenera() {
-    const genera = pokemonSpecies?.genera.find(
-      (genera) => genera.language.name === 'en',
-    )
-
-    return genera?.genus.split('Pokémon')
-  }
-
-  function getAbility() {
-    const ability = abilityInfo?.effect_entries.find(
-      (genera) => genera.language.name === 'en',
-    )
-
-    return ability?.effect
-  }
-
-  function getTypeColor(color: string) {
-    return pokemonTypesColors[color]
   }
 
   return (
@@ -112,56 +81,17 @@ export default function PokemonPage() {
           <div className="flavor_text">
             <span>{pokemonSpecies?.flavor_text_entries[0].flavor_text}</span>
           </div>
-          <div className={`${isInfoOpen ? 'infoModal' : ''}  pokemonInfo`}>
-            {isInfoOpen ? (
-              <>
-                <div>
-                  <h4>Ability Info</h4>
-                  <X size={20} onClick={handleAbilityInfo} />
-                </div>
-                <span>{getAbility()}</span>
-              </>
-            ) : (
-              <>
-                <span>Height: {convertHeight()}m</span>
-                <span>Weight: {convertWeight()}Kg</span>
-                <span>Type: {getGenera()}</span>
-                <span>
-                  Ability: {pokemonInfo?.abilities[0].ability.name}
-                  <button onClick={handleAbilityInfo}>
-                    <Question size={25} />
-                  </button>
-                </span>
-              </>
-            )}
-          </div>
-          <div className="typeContainer">
-            <h2>Type</h2>
-            <div>
-              {pokemonInfo?.types.map((type) => {
-                return (
-                  <div
-                    key={type.type.name}
-                    className="typeTag"
-                    style={{
-                      backgroundColor: `${getTypeColor(type.type.name)}`,
-                    }}
-                  >
-                    <span
-                      style={{
-                        color: readableColor(
-                          `${pokemonTypesColors[type.type.name]}`,
-                        ),
-                      }}
-                    >
-                      {type.type.name}
-                    </span>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+          <PokemonInfo
+            ability={abilityInfo}
+            species={pokemonSpecies}
+            pokemonHeight={pokemonInfo?.height}
+            pokemonWeight={pokemonInfo?.weight}
+          />
+          <Types pokemonInfo={pokemonInfo} />
         </div>
+      </div>
+      <div>
+        <Stats pokemonInfo={pokemonInfo} />
       </div>
     </div>
   )
