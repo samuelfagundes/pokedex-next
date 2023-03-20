@@ -10,6 +10,7 @@ import '../../styles/pokemonPage.scss'
 import { Stats } from '@/app/components/Stats'
 import { PokemonInfo } from '@/app/components/PokemonInfo'
 import { Types } from '@/app/components/Types'
+import Loading from './loading'
 
 const inconsolata = Inconsolata({ subsets: ['latin'] })
 
@@ -46,8 +47,6 @@ export default function PokemonPage() {
       }
     }
 
-    console.log('Hello')
-
     getPokemons()
   }, [pokemonName, abilityId])
 
@@ -62,37 +61,48 @@ export default function PokemonPage() {
   }
 
   return (
-    <div className={`${inconsolata.className} pokemonPageContainer`}>
-      <h1>
-        {pokemonInfo?.name} <span>{formatId(String(pokemonInfo?.id))}</span>
-      </h1>
-      <div className="pageGrid">
-        <div className="imageContainer">
-          {pokemonInfo?.sprites.other?.['official-artwork'].front_default && (
-            <Image
-              src={pokemonInfo.sprites.other['official-artwork'].front_default}
-              width={500}
-              height={500}
-              alt={pokemonInfo!.name}
-            />
-          )}
-        </div>
-        <div>
-          <div className="flavor_text">
-            <span>{pokemonSpecies?.flavor_text_entries[0].flavor_text}</span>
+    <>
+      {pokemonInfo ? (
+        <div className={`${inconsolata.className} pokemonPageContainer`}>
+          <h1>
+            {pokemonInfo?.name} <span>{formatId(String(pokemonInfo?.id))}</span>
+          </h1>
+          <div className="pageGrid">
+            <div className="imageContainer">
+              {pokemonInfo?.sprites.other?.['official-artwork']
+                .front_default && (
+                <Image
+                  src={
+                    pokemonInfo.sprites.other['official-artwork'].front_default
+                  }
+                  width={500}
+                  height={500}
+                  alt={pokemonInfo!.name}
+                />
+              )}
+            </div>
+            <div>
+              <div className="flavor_text">
+                <span>
+                  {pokemonSpecies?.flavor_text_entries[0].flavor_text}
+                </span>
+              </div>
+              <PokemonInfo
+                ability={abilityInfo}
+                species={pokemonSpecies}
+                pokemonHeight={pokemonInfo?.height}
+                pokemonWeight={pokemonInfo?.weight}
+              />
+              <Types pokemonInfo={pokemonInfo} />
+            </div>
           </div>
-          <PokemonInfo
-            ability={abilityInfo}
-            species={pokemonSpecies}
-            pokemonHeight={pokemonInfo?.height}
-            pokemonWeight={pokemonInfo?.weight}
-          />
-          <Types pokemonInfo={pokemonInfo} />
+          <div>
+            <Stats pokemonInfo={pokemonInfo} />
+          </div>
         </div>
-      </div>
-      <div>
-        <Stats pokemonInfo={pokemonInfo} />
-      </div>
-    </div>
+      ) : (
+        <Loading />
+      )}
+    </>
   )
 }

@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   width: 16rem;
   height: 18rem;
@@ -18,7 +19,12 @@
   }
 
   h1 {
-margin-bottom: 0.5rem
+    margin-bottom: 0.5rem
+  }
+
+  &:hover {
+    animation-name: popup;
+    animation-duration: .3s;
   }
 }
 
@@ -36,5 +42,17 @@ margin-bottom: 0.5rem
     justify-content: center;
     width: 100%;
     font-weight: 700;
+  }
+}
+
+@keyframes popup {
+  0% {
+    top: 0px
+  }
+  50% {
+    top: -15px
+  }
+  100% {
+    top: 0px
   }
 }

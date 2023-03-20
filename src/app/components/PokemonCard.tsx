@@ -1,6 +1,5 @@
 'use client'
 
-// import { pokemonTypesColors } from '@/utils/pokemonTypesColors'
 import Image from 'next/image'
 import { Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts'
 import { useEffect, useState } from 'react'

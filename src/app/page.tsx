@@ -13,7 +13,7 @@ import './styles/dashboard.scss'
 
 const inconsolata = Inconsolata({ subsets: ['latin'] })
 
-export default function Dashboard() {
+export default function Home() {
   const [pokemons, setPokemons] = useState<NamedAPIResourceList>()
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Dashboard() {
       </div>
       <div className="buttonsContainer">
         {pokemons?.next ? (
-          <Link href={'/2'}>
+          <Link href={'/page/2'}>
             <Button className="next" text="Next page" />
           </Link>
         ) : (

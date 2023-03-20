@@ -15,7 +15,8 @@ const inconsolata = Inconsolata({ subsets: ['latin'] })
 
 export default function Dashboard() {
   const [pokemons, setPokemons] = useState<NamedAPIResourceList>()
-  const pathName: string = usePathname().split('/')[1]
+  const pathNameArray = usePathname().split('/')
+  const pathName = pathNameArray[pathNameArray.length - 1]
   let limit = 60
 
   const listLimit = useCallback(() => {
@@ -67,7 +68,7 @@ export default function Dashboard() {
         )}
 
         {pokemons?.next && Number(pathName) !== 17 ? (
-          <Link href={`/${Number(pathName) + 1}`}>
+          <Link href={`/page/${Number(pathName) + 1}`}>
             <Button className="next" text="Next page" />
           </Link>
         ) : (
