@@ -2,13 +2,21 @@
 
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Ability, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts'
+import {
+  Ability,
+  EvolutionChain,
+  EvolutionClient,
+  Pokemon,
+  PokemonClient,
+  PokemonSpecies,
+} from 'pokenode-ts'
 import { useEffect, useState } from 'react'
 import { Inconsolata } from 'next/font/google'
 
 import '../../styles/pokemonPage.scss'
 import { Stats } from '@/app/components/Stats'
 import { PokemonInfo } from '@/app/components/PokemonInfo'
+import { EvoChain } from '@/app/components/EvolutionChain'
 import { Types } from '@/app/components/Types'
 import Loading from './loading'
 
@@ -18,12 +26,16 @@ export default function PokemonPage() {
   const [pokemonInfo, setPokemonInfo] = useState<Pokemon>()
   const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies>()
   const [abilityInfo, setAbilityInfo] = useState<Ability>()
+  const [evoChain, setEvoChain] = useState<EvolutionChain>()
 
   const splitPath = usePathname().split('/')
   const pokemonName = splitPath[splitPath.length - 1]
 
   const abilityInfoUrl = pokemonInfo?.abilities[0].ability.url.split('/')
-  const abilityId = abilityInfoUrl?.[abilityInfoUrl?.length - 2]
+  const abilityId = abilityInfoUrl?.[abilityInfoUrl.length - 2]
+
+  const splitChainUrl = pokemonSpecies?.evolution_chain.url.split('/')
+  const evoChainId = splitChainUrl?.[splitChainUrl.length - 2]
 
   useEffect(() => {
     async function getPokemons() {
@@ -48,7 +60,22 @@ export default function PokemonPage() {
     }
 
     getPokemons()
-  }, [pokemonName, abilityId])
+  }, [pokemonName, abilityId, evoChainId])
+
+  useEffect(() => {
+    async function getEvolutions() {
+      const api = new EvolutionClient()
+
+      if (evoChainId) {
+        await api
+          .getEvolutionChainById(Number(evoChainId))
+          .then((data) => setEvoChain(data))
+          .catch((error) => console.log(error))
+      }
+    }
+
+    getEvolutions()
+  }, [evoChainId])
 
   function formatId(pokemonId: string | undefined) {
     if (pokemonId?.length === 1) {
@@ -98,6 +125,9 @@ export default function PokemonPage() {
           </div>
           <div>
             <Stats pokemonInfo={pokemonInfo} />
+          </div>
+          <div>
+            <EvoChain evoChain={evoChain} />
           </div>
         </div>
       ) : (
