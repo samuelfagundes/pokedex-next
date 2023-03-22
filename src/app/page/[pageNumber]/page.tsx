@@ -11,6 +11,7 @@ import { Button } from '@/app/components/Button'
 
 import '../../styles/dashboard.scss'
 import Link from 'next/link'
+import { CardPlaceholder } from '@/app/components/CardPlaceholder'
 const inconsolata = Inconsolata({ subsets: ['latin'] })
 
 export default function Dashboard() {
@@ -47,34 +48,60 @@ export default function Dashboard() {
 
   return (
     <main className={inconsolata.className}>
-      <div className="dashboardContainer">
-        {pokemons?.results.map((pokemon) => {
-          return (
-            <PokemonCard
-              key={pokemon.name}
-              name={pokemon.name}
-              id={formatId(pokemon.url)}
-            />
-          )
-        })}
-      </div>
-      <div className="buttonsContainer">
-        {pokemons?.previous ? (
-          <Link href={`page/${Number(pathName) - 1}`}>
-            <Button className="previous pageSelector" text="Previous page" />
-          </Link>
-        ) : (
-          <></>
-        )}
+      {pokemons ? (
+        <>
+          <div className="dashboardContainer">
+            {pokemons?.results.map((pokemon) => {
+              return (
+                <PokemonCard
+                  key={pokemon.name}
+                  name={pokemon.name}
+                  id={formatId(pokemon.url)}
+                />
+              )
+            })}
+          </div>
+          <div className="buttonsContainer">
+            {pokemons?.previous ? (
+              <Link href={`page/${Number(pathName) - 1}`}>
+                <Button
+                  className="previous pageSelector"
+                  text="Previous page"
+                />
+              </Link>
+            ) : (
+              <></>
+            )}
 
-        {pokemons?.next && Number(pathName) !== 17 ? (
-          <Link href={`/page/${Number(pathName) + 1}`}>
-            <Button className="next pageSelector" text="Next page" />
-          </Link>
-        ) : (
-          <></>
-        )}
-      </div>
+            {pokemons?.next && Number(pathName) !== 17 ? (
+              <Link href={`/page/${Number(pathName) + 1}`}>
+                <Button className="next pageSelector" text="Next page" />
+              </Link>
+            ) : (
+              <></>
+            )}
+          </div>
+        </>
+      ) : (
+        <div className="dashboardContainer">
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+          <CardPlaceholder />
+        </div>
+      )}
     </main>
   )
 }
