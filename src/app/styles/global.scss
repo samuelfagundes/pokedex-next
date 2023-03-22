@@ -11,13 +11,6 @@
   --red: #D00000;
   --text: #090302;
   --black: #191516;
-  // --text: #666666;
-  // --text-highlight: #b3b9ff;
-  // --title: #2e384d;
-  // --green: #4cd62b;
-  // --blue: #5965e0;
-  // --blue-dark: #4953b8;
-  // --blue-twitter: #2aa9e0;
 }
 
 @media (max-width: 1080px) {
@@ -36,13 +29,6 @@ body {
   background: var(--white);
   color: var(--text);
 }
-
-// body,
-// input,
-// textarea,
-// button {
-//   font: 400 1rem "Inter", sans-serif;
-// }
 
 button {
   cursor: pointer;

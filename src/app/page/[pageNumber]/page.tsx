@@ -60,8 +60,8 @@ export default function Dashboard() {
       </div>
       <div className="buttonsContainer">
         {pokemons?.previous ? (
-          <Link href={`/${Number(pathName) - 1}`}>
-            <Button className="previous" text="Previous page" />
+          <Link href={`page/${Number(pathName) - 1}`}>
+            <Button className="previous pageSelector" text="Previous page" />
           </Link>
         ) : (
           <></>
@@ -69,7 +69,7 @@ export default function Dashboard() {
 
         {pokemons?.next && Number(pathName) !== 17 ? (
           <Link href={`/page/${Number(pathName) + 1}`}>
-            <Button className="next" text="Next page" />
+            <Button className="next pageSelector" text="Next page" />
           </Link>
         ) : (
           <></>

@@ -1,6 +1,11 @@
 .header {
-  display: flex;
-  padding: 1rem 2rem;
-  background-color: var(--red);
-  color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--red);
+    color: var(--white);
+
+    a {
+      margin: 1rem 2rem;
+    }
 }

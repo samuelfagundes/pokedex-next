@@ -1,4 +1,4 @@
-button {
+.pageSelector {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,8 +19,8 @@ button {
 
 .previous:hover {
   background-color: var(--gray);
-  color: var(--text);
-  border: 1px solid var(--black);
+  color: var(--red);
+  border: 1px solid var(--red);
 }
 
 .next {
@@ -32,6 +32,6 @@ button {
 
 .next:hover {
   background-color: var(--gray);
-  color: var(--text);
-  border: 1px solid var(--black);
+  color: var(--red);
+  border: 1px solid var(--red);
 }

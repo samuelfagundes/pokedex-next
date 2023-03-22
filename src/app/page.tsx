@@ -45,7 +45,7 @@ export default function Home() {
       <div className="buttonsContainer">
         {pokemons?.next ? (
           <Link href={'/page/2'}>
-            <Button className="next" text="Next page" />
+            <Button className="next pageSelector" text="Next page" />
           </Link>
         ) : (
           <></>

@@ -111,7 +111,7 @@ export default function PokemonPage() {
             <div>
               <div className="flavor_text">
                 <span>
-                  {pokemonSpecies?.flavor_text_entries[0].flavor_text}
+                  {pokemonSpecies?.flavor_text_entries[0]?.flavor_text}
                 </span>
               </div>
               <PokemonInfo

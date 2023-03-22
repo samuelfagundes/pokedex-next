@@ -34,7 +34,13 @@ export function PokemonInfo({
       (genera) => genera.language.name === 'en',
     )
 
-    return genera?.genus.split('Pokémon')
+    console.log(genera)
+
+    if (genera) {
+      return genera?.genus.split('Pokémon')
+    } else {
+      return 'Unknown'
+    }
   }
 
   function getAbility() {
@@ -59,7 +65,7 @@ export function PokemonInfo({
         <>
           <span>Height: {convertHeight()}m</span>
           <span>Weight: {convertWeight()}Kg</span>
-          <span>Type: {getGenera()}</span>
+          <span>Category: {getGenera()}</span>
           <span style={{ textTransform: 'capitalize' }}>
             Ability: {ability?.name}
             <button onClick={handleAbilityInfo}>

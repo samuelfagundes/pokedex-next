@@ -1,0 +1,31 @@
+.searchBarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2rem;
+
+  input {
+    padding: 0.2rem;
+    font-size: 1.2rem;
+    height: 35px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    background-color: var(--white);
+  }
+
+  button {
+    height: 35px;
+    padding: 0 0.2rem;
+    background-color: inherit;
+    border: 1px solid var(--white);
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    color: var(--white);
+    transition: all .2s;
+
+    &:hover {
+      background-color: var(--white);
+      color: var(--red);
+    }
+  }
+}

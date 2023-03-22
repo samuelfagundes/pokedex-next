@@ -17,7 +17,7 @@ interface PokemonProps {
 export function PokemonCard({ name, id }: PokemonProps) {
   const [pokemon, setPokemon] = useState<Pokemon>()
   const [species, setSpecies] = useState<PokemonSpecies>()
-  const sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+  const sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 
   useEffect(() => {
     async function getSpecies() {
