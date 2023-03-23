@@ -84,6 +84,14 @@ export default function PokemonPage() {
     setIsSelectorOpen((prevState) => !prevState)
   }
 
+  function englishFlavorText() {
+    const flavorText = pokemonSpecies?.flavor_text_entries.find(
+      (text) => text.language.name === 'en',
+    )
+
+    return flavorText?.flavor_text
+  }
+
   function formatId(pokemonId: string | undefined) {
     if (pokemonId?.length === 1) {
       return '#000' + pokemonId
@@ -158,9 +166,7 @@ export default function PokemonPage() {
             </div>
             <div>
               <div className="flavor_text">
-                <span>
-                  {pokemonSpecies?.flavor_text_entries[0]?.flavor_text}
-                </span>
+                <span>{englishFlavorText()}</span>
               </div>
               <PokemonInfo
                 ability={abilityInfo}
