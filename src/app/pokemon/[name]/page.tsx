@@ -13,12 +13,12 @@ import {
 import { useEffect, useState } from 'react'
 import { Inconsolata } from 'next/font/google'
 
-import '../../styles/pokemonPage.scss'
 import { Stats } from '@/app/components/Stats'
 import { PokemonInfo } from '@/app/components/PokemonInfo'
 import { EvoChain } from '@/app/components/EvolutionChain'
 import { Types } from '@/app/components/Types'
 import Loading from './loading'
+import '../../styles/pokemonPage.scss'
 
 const inconsolata = Inconsolata({ subsets: ['latin'] })
 
@@ -104,7 +104,7 @@ export default function PokemonPage() {
                   }
                   width={500}
                   height={500}
-                  alt={pokemonInfo!.name}
+                  alt={pokemonInfo.name}
                 />
               )}
             </div>

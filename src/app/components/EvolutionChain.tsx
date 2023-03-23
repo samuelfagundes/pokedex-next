@@ -15,7 +15,7 @@ export function EvoChain({ evoChain }: EvolutionProps) {
   const firstEvolutionId = firstEvolutionSplit?.[firstEvolutionSplit.length - 2]
 
   const thirdEvolutionUrl =
-    evoChain?.chain.evolves_to[0].evolves_to[0]?.species.url
+    evoChain?.chain.evolves_to[0]?.evolves_to[0]?.species.url
   const thirdEvolutionSplit = thirdEvolutionUrl?.split('/')
   const thirdEvolutionId = thirdEvolutionSplit?.[thirdEvolutionSplit.length - 2]
   const firstSprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${firstEvolutionId}.png`
@@ -39,10 +39,10 @@ export function EvoChain({ evoChain }: EvolutionProps) {
             </div>
           </Link>
         )}
-        {evoChain?.chain.evolves_to[0].species.name && (
+        {evoChain?.chain.evolves_to[0]?.species.name && (
           <CaretRight size={50} color="white" />
         )}
-        {evoChain?.chain.evolves_to[0].species.name && (
+        {evoChain?.chain.evolves_to[0]?.species.name && (
           <div
             className={`${
               evoChain.chain.evolves_to.length > 1 ? 'multipleEvolutions' : ''
@@ -74,7 +74,7 @@ export function EvoChain({ evoChain }: EvolutionProps) {
             })}
           </div>
         )}
-        {evoChain?.chain.evolves_to[0].evolves_to[0]?.species.name && (
+        {evoChain?.chain.evolves_to[0]?.evolves_to[0]?.species.name && (
           <div className="pokemonContainer">
             <CaretRight size={50} color="white" />
             <Link
