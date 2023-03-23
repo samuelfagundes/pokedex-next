@@ -1,11 +1,23 @@
-.header {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: var(--red);
-    color: var(--white);
+.headerContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--red);
+  color: var(--white);
+}
 
-    a {
-      margin: 1rem 2rem;
-    }
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 1050px;
+
+  a {
+   margin: 1rem 0;
+   margin-left: 275px;
+  }
+}
+
+.backButton {
+  background-color: inherit;
+  border: none;
 }

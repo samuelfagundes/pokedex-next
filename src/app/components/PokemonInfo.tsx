@@ -34,8 +34,6 @@ export function PokemonInfo({
       (genera) => genera.language.name === 'en',
     )
 
-    console.log(genera)
-
     if (genera) {
       return genera?.genus.split('Pokémon')
     } else {

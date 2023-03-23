@@ -9,10 +9,84 @@
     font-weight: bold;
     font-size: 3rem;
     text-transform: capitalize;
-
+    
     span {
-      color: #63687E
+      margin-left: 0.5rem;
+      color: #63687E;
+      font-size: 3rem;
+      font-weight: bold
     }
+  }
+}
+
+.selectorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+
+  h1 {
+    font-weight: bold;
+    font-size: 3rem;
+    text-transform: capitalize;
+  }
+
+  span {
+      font-size: 3rem;
+      font-weight: bold
+  }
+}
+
+.selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  background-color: var(--black);
+  color: var(--white);
+  padding: 0.5rem;
+  border-radius: 5px;
+  position: relative;
+  z-index: 99999;
+  transition: background-color .2s;
+  overflow: hidden;
+
+  &:hover {
+    background-color: black;
+    cursor: pointer
+  }
+}
+
+.openSelector {
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  position: absolute;
+  top: 3.9rem;
+  left: 0;
+  width: 100%;
+  background-color: var(--black);
+  color: var(--white);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 0;
+  animation-name: slideDown;
+  animation-duration: .1s;
+}
+
+.selectorItem {
+  padding: 0.3rem;
+  transition: all 0.2s;
+  border: none;
+  background-color: var(--black);
+  color: var(--white);
+  text-transform: capitalize;
+  width: 100%;
+
+  &:hover {
+    background-color: black;
+    cursor: pointer
   }
 }
 
@@ -50,7 +124,7 @@
     display: flex;
     align-items: center;
 
-    button {
+    > button {
       margin-left: 0.2rem;
       line-height: 0;
       border: none;
@@ -77,7 +151,7 @@
   background-color: var(--black);
   color: var(--white);
 
-  transition: background-color 0.2s;
+  transition: background-color .2s;
 
   div {
     display: flex;
@@ -121,4 +195,15 @@
   font-size: 1.5rem;
   font-weight: 500;
   text-transform: capitalize;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }

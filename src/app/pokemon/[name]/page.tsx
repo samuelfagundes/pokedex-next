@@ -19,10 +19,13 @@ import { EvoChain } from '@/app/components/EvolutionChain'
 import { Types } from '@/app/components/Types'
 import Loading from './loading'
 import '../../styles/pokemonPage.scss'
+import { CaretDown } from 'phosphor-react'
+import Link from 'next/link'
 
 const inconsolata = Inconsolata({ subsets: ['latin'] })
 
 export default function PokemonPage() {
+  const [isSelectorOpen, setIsSelectorOpen] = useState(false)
   const [pokemonInfo, setPokemonInfo] = useState<Pokemon>()
   const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies>()
   const [abilityInfo, setAbilityInfo] = useState<Ability>()
@@ -77,10 +80,16 @@ export default function PokemonPage() {
     getEvolutions()
   }, [evoChainId])
 
+  function handleOpenSelector() {
+    setIsSelectorOpen((prevState) => !prevState)
+  }
+
   function formatId(pokemonId: string | undefined) {
     if (pokemonId?.length === 1) {
-      return '#00' + pokemonId
+      return '#000' + pokemonId
     } else if (pokemonId?.length === 2) {
+      return '#00' + pokemonId
+    } else if (pokemonId?.length === 3) {
       return '#0' + pokemonId
     } else {
       return '#' + pokemonId
@@ -91,9 +100,48 @@ export default function PokemonPage() {
     <>
       {pokemonInfo ? (
         <div className={`${inconsolata.className} pokemonPageContainer`}>
-          <h1>
-            {pokemonInfo?.name} <span>{formatId(String(pokemonInfo?.id))}</span>
-          </h1>
+          {pokemonSpecies?.varieties.length !== undefined &&
+          pokemonSpecies?.varieties.length > 1 ? (
+            <>
+              <div className="selectorContainer">
+                <button
+                  className={`${inconsolata.className} selector`}
+                  onClick={handleOpenSelector}
+                >
+                  <div>
+                    <CaretDown size={25} />
+                  </div>
+                  <h1>{pokemonInfo?.name}</h1>
+                  <span>{formatId(String(pokemonInfo?.id))}</span>
+                </button>
+                {isSelectorOpen === true && (
+                  <div className="openSelector">
+                    {pokemonSpecies.varieties.map((variety) => {
+                      return (
+                        <Link
+                          href={`/pokemon/${variety.pokemon.name}`}
+                          key={variety.pokemon.name}
+                        >
+                          <button
+                            className={`${inconsolata.className} selectorItem`}
+                          >
+                            <h2>{variety.pokemon.name}</h2>
+                          </button>
+                        </Link>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            </>
+          ) : (
+            <>
+              <h1>
+                {pokemonInfo?.name}
+                <span>{formatId(String(pokemonInfo?.id))}</span>
+              </h1>
+            </>
+          )}
           <div className="pageGrid">
             <div className="imageContainer">
               {pokemonInfo?.sprites.other?.['official-artwork']
@@ -126,9 +174,11 @@ export default function PokemonPage() {
           <div>
             <Stats pokemonInfo={pokemonInfo} />
           </div>
-          <div>
-            <EvoChain evoChain={evoChain} />
-          </div>
+          {evoChain && (
+            <div>
+              <EvoChain evoChain={evoChain} />
+            </div>
+          )}
         </div>
       ) : (
         <Loading />
