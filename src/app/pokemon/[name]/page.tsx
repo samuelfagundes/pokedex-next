@@ -32,7 +32,9 @@ export default function PokemonPage() {
   const [evoChain, setEvoChain] = useState<EvolutionChain>()
 
   const splitPath = usePathname().split('/')
-  const pokemonName = splitPath[splitPath.length - 1]
+  const pokemonFullName = splitPath[splitPath.length - 1]
+  const pokemonSplitName = pokemonFullName.split('-')
+  const pokemonName = pokemonSplitName[pokemonSplitName.length - 2]
 
   const abilityInfoUrl = pokemonInfo?.abilities[0].ability.url.split('/')
   const abilityId = abilityInfoUrl?.[abilityInfoUrl.length - 2]
@@ -45,7 +47,7 @@ export default function PokemonPage() {
       const api = new PokemonClient()
 
       await api
-        .getPokemonByName(pokemonName)
+        .getPokemonByName(pokemonFullName)
         .then((data) => setPokemonInfo(data))
         .catch((error) => console.log(error))
 
@@ -53,6 +55,13 @@ export default function PokemonPage() {
         .getPokemonSpeciesByName(pokemonName)
         .then((data) => setPokemonSpecies(data))
         .catch((err) => console.log(err))
+
+      if (pokemonSpecies === undefined) {
+        await api
+          .getPokemonSpeciesByName(pokemonFullName)
+          .then((data) => setPokemonSpecies(data))
+          .catch((err) => console.log(err))
+      }
 
       if (abilityId) {
         await api
@@ -63,7 +72,7 @@ export default function PokemonPage() {
     }
 
     getPokemons()
-  }, [pokemonName, abilityId, evoChainId])
+  }, [pokemonName, abilityId, evoChainId, pokemonFullName, pokemonSpecies])
 
   useEffect(() => {
     async function getEvolutions() {
@@ -104,6 +113,8 @@ export default function PokemonPage() {
     }
   }
 
+  console.log(pokemonSpecies)
+
   return (
     <>
       {pokemonInfo ? (
@@ -119,7 +130,7 @@ export default function PokemonPage() {
                   <div>
                     <CaretDown size={25} />
                   </div>
-                  <h1>{pokemonInfo?.name}</h1>
+                  <h1>{pokemonInfo.name}</h1>
                   <span>{formatId(String(pokemonInfo?.id))}</span>
                 </button>
                 {isSelectorOpen === true && (
@@ -145,7 +156,7 @@ export default function PokemonPage() {
           ) : (
             <>
               <h1>
-                {pokemonInfo?.name}
+                {pokemonInfo.name}
                 <span>{formatId(String(pokemonInfo?.id))}</span>
               </h1>
             </>
