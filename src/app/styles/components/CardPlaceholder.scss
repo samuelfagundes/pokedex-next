@@ -5,3 +5,45 @@
   border-radius: 5px;
   background-color: var(--gray);
 }
+
+@media screen and (max-width: 1050px) {
+  .cardPlaceholder {
+    width: 15rem;
+    height: 17rem;    
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .cardPlaceholder {
+    width: 14rem;
+    height: 16rem;    
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .cardPlaceholder {
+    width: 11rem;
+    height: 12rem;    
+  }
+}
+
+@media screen and (max-width: 550px) {  
+  .cardPlaceholder {
+    width: 12rem;
+    height: 14rem;  
+  }
+}
+
+@media screen and (max-width: 450px) {  
+  .cardPlaceholder {
+    width: 10rem;
+    height: 12rem;  
+  }
+}
+
+@media screen and (max-width: 300px) {  
+  .cardPlaceholder {
+    width: 7rem;
+    height: 11rem;  
+  }
+}

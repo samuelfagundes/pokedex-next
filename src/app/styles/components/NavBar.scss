@@ -21,3 +21,44 @@
   background-color: inherit;
   border: none;
 }
+
+@media screen and (max-width: 1050px) {
+  .header {
+    width: 950px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .header {
+    width: 900px;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .header {
+    width: 800px;
+  }
+}
+
+
+@media screen and (max-width: 780px) {
+  .header {
+    width: 100vw;
+    justify-content: space-between;
+
+    a {
+      margin-left: 1rem;
+    }
+}
+
+  .backButton {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .header {
+    // width: 500px;
+    justify-content: center;
+  }
+}

@@ -9,8 +9,8 @@ import { formatId } from '@/utils/formatId'
 
 import { PokemonCard } from './components/PokemonCard'
 import { Button } from './components/Button'
-import './styles/dashboard.scss'
 import { CardPlaceholder } from './components/CardPlaceholder'
+import './styles/dashboard.scss'
 
 const inconsolata = Inconsolata({ subsets: ['latin'] })
 

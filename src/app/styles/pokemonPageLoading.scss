@@ -68,3 +68,161 @@
   font-weight: 500;
   text-transform: capitalize;
 }
+
+@media screen and (max-width: 1050px) {
+  .pokemonPageContainer {
+    width: 980px;
+  }
+
+  .imageContainerPlaceholder {
+      width: 400px;
+      height: 400px;
+  }
+
+  .flavorTextPlaceholder {
+    div {
+      width: 500px;
+      height: 1.4rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-top: 2rem;
+      background-color: var(--gray);
+      
+      &:last-child {
+        width: 260px;
+        margin: 0.2rem 0 2rem 0;
+      }
+    }
+  }
+
+  .pageGrid {
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .pokemonPageContainer {
+    width: 900px;
+  }
+
+  .imageContainerPlaceholder {
+      width: 380px;
+      height: 380px;
+  }
+
+  .pageGrid {
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .pokemonPageContainer {
+    width: 800px;
+  }
+
+  .imageContainerPlaceholder {
+      width: 360px;
+      height: 360px;
+  }
+
+  .flavorTextPlaceholder {
+    div {
+      width: 380px;
+    }
+  }
+
+  .infoPlaceholder {
+    width: 380px;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .pokemonPageContainer {
+    width: 750px;
+  }
+
+  .imageContainerPlaceholder {
+      width: 350px;
+      height: 350px;
+  }
+
+  .flavorTextPlaceholder {
+    div {
+      width: 350px;
+    }
+  }
+
+  .infoPlaceholder {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .pokemonPageContainer {
+    width: 500px;
+  }
+
+  .pageGrid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .pokemonPageContainer {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .pokemonPageContainer {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .pokemonPageContainer {
+    width: 300px;
+  }
+
+  .imageContainerPlaceholder {
+      width: 280px;
+      height: 280px;
+  }
+
+  .flavorTextPlaceholder {
+    div {
+      width: 300px;
+    }
+  }
+
+  .infoPlaceholder {
+    width: 300px
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .pokemonPageContainer {
+    width: 250px;
+  }
+
+  .imageContainerPlaceholder {
+      width: 250px;
+      height: 250px;
+  }
+
+  .flavorTextPlaceholder {
+    div {
+      width: 250px;
+    }
+  }
+
+  .infoPlaceholder {
+    width: 250px
+  }
+
+}
+
+

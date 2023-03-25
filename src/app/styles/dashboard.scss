@@ -23,3 +23,113 @@ main {
     width: 100%;
   }
 }
+
+@media screen and (max-width: 1050px) {
+  .buttonsContainer {
+    width: 945px;
+
+    a {
+      width: 945px
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .buttonsContainer {
+    width: 900px;
+
+    a {
+      width: 900px
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .dashboardContainer {
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+    margin: 1rem auto;
+  }
+
+  .buttonsContainer {
+    width: 700px;
+
+    a {
+      width: 700px
+    }
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .dashboardContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .dashboardContainer {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .buttonsContainer {
+    width: 520px;
+
+    a {
+      width: 520px
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .dashboardContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 2rem auto;
+  }
+  
+
+  .buttonsContainer {
+    width: 400px;
+
+    a {
+      width: 400px
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .buttonsContainer {
+    width: 360px;
+
+    a {
+      width: 360px
+    }
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .dashboardContainer {
+    margin: 1rem auto;
+  }
+  
+
+  .buttonsContainer {
+    width: 300px;
+
+    a {
+      width: 300px
+    }
+  }
+}
+
+@media screen and (max-width: 300px) { 
+  .buttonsContainer {
+    width: 250px;
+
+    a {
+      width: 250px
+    }
+  }
+}
+

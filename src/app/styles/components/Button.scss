@@ -35,3 +35,10 @@
   color: var(--red);
   border: 1px solid var(--red);
 }
+
+@media screen and (max-width: 380px) {
+  .pageSelector {
+    padding: .8rem 0;
+  }
+}
+

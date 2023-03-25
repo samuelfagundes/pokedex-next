@@ -56,3 +56,99 @@
     top: 0px
   }
 }
+
+@media screen and (max-width: 1050px) {
+  .card {
+    width: 15rem;
+    height: 17rem;
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  } 
+}
+
+@media screen and (max-width: 920px) {
+  .card {
+    width: 14rem;
+    height: 16rem;
+
+    img {
+      width: 135px;
+      height: 135px;
+    }
+  } 
+}
+
+@media screen and (max-width: 780px) {
+  .card {
+    width: 11rem;
+    height: 12rem;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+
+    h1 {
+      font-size: 1.2rem;
+    }
+  }
+  
+  .types {
+    span {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .card {
+    width: 12rem;
+    height: 14rem;
+
+    img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .card {
+    width: 10rem;
+    height: 12rem;
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  } 
+}
+
+@media screen and (max-width: 300px) {
+  .card {
+    width: 7rem;
+    height: 11rem;
+  
+    h1 {
+      font-size: 1rem
+    }
+
+    img {
+      width: 90px;
+      height: 90px;
+    }
+  } 
+
+  .types {
+    span {
+      font-size: 0.8rem;
+    }
+  }
+}

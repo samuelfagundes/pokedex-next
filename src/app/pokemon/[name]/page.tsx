@@ -34,7 +34,7 @@ export default function PokemonPage() {
   const splitPath = usePathname().split('/')
   const pokemonFullName = splitPath[splitPath.length - 1]
   const pokemonSplitName = pokemonFullName.split('-')
-  const pokemonName = pokemonSplitName[pokemonSplitName.length - 2]
+  const pokemonName = pokemonSplitName[0]
 
   const abilityInfoUrl = pokemonInfo?.abilities[0].ability.url.split('/')
   const abilityId = abilityInfoUrl?.[abilityInfoUrl.length - 2]
@@ -56,13 +56,6 @@ export default function PokemonPage() {
         .then((data) => setPokemonSpecies(data))
         .catch((err) => console.log(err))
 
-      if (pokemonSpecies === undefined) {
-        await api
-          .getPokemonSpeciesByName(pokemonFullName)
-          .then((data) => setPokemonSpecies(data))
-          .catch((err) => console.log(err))
-      }
-
       if (abilityId) {
         await api
           .getAbilityById(Number(abilityId))
@@ -72,7 +65,7 @@ export default function PokemonPage() {
     }
 
     getPokemons()
-  }, [pokemonName, abilityId, evoChainId, pokemonFullName, pokemonSpecies])
+  }, [abilityId, pokemonFullName, pokemonName])
 
   useEffect(() => {
     async function getEvolutions() {
@@ -112,8 +105,6 @@ export default function PokemonPage() {
       return '#' + pokemonId
     }
   }
-
-  console.log(pokemonSpecies)
 
   return (
     <>
