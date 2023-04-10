@@ -14,7 +14,7 @@ export function SearchBar() {
     e.preventDefault()
 
     if (search.length > 2) {
-      router.push(`/search/${search}`)
+      router.push(`/search/${search.toLowerCase()}`)
     }
   }
 

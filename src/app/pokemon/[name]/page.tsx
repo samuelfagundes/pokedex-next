@@ -39,7 +39,7 @@ export default function PokemonPage() {
   const abilityInfoUrl = pokemonInfo?.abilities[0].ability.url.split('/')
   const abilityId = abilityInfoUrl?.[abilityInfoUrl.length - 2]
 
-  const splitChainUrl = pokemonSpecies?.evolution_chain.url.split('/')
+  const splitChainUrl = pokemonSpecies?.evolution_chain?.url.split('/')
   const evoChainId = splitChainUrl?.[splitChainUrl.length - 2]
 
   useEffect(() => {
